@@ -1,0 +1,6 @@
+*.iml
+out
+.idea
+resources
+target
+test
