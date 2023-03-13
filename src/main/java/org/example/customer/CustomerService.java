@@ -6,5 +6,4 @@ public interface CustomerService {
     void printMenu();
 
     void listAvailableItems();
-
 }

@@ -12,5 +12,4 @@ public interface StorageService {
     Map.Entry<Item, Integer> getItemEntryById(int id);
 
     Set<Map.Entry<Item, Integer>> getStorageContents();
-
 }

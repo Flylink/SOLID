@@ -67,29 +67,20 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void listAvailableItems() {
         Set<Map.Entry<Item, Integer>> productsSet = storageService.getStorageContents();
-        if (productsSet.isEmpty()
-                    || productsSet.stream().allMatch(s -> s.getValue() == 0)
-                    || productsSet.stream().allMatch(s -> s.getKey().getRetailPrice() == 0)) {
+        if (productsSet.isEmpty() || productsSet.stream().allMatch(s -> s.getValue() == 0) || productsSet.stream().allMatch(s -> s.getKey().getRetailPrice() == 0)) {
             System.out.println("Извините, в данный момент ничего нет в наличии.");
         } else {
             sb.append("Доступны следующие позиции:\n");
             sb.append(String.format("%-10s %-25s %-15s %s%n", "Id", "Название", "Цена", "Кол-во"));
-            productsSet.stream()
-                    .filter(p -> p.getValue() > 0 && p.getKey().getRetailPrice() > 0)
-                    .sorted((o1, o2) -> {
-                        if (o1.getKey().getId() == o2.getKey().getId()) {
-                            return 0;
-                        } else {
-                            return o1.getKey().getId() > o2.getKey().getId() ? 1 : -1;
-                        }
-                    })
-                    .forEach(s -> {
-                        sb.append(String.format("%-10d %-25s %-15d %d%n",
-                                s.getKey().getId(),
-                                s.getKey().getName(),
-                                s.getKey().getRetailPrice(),
-                                s.getValue()));
-                    });
+            productsSet.stream().filter(p -> p.getValue() > 0 && p.getKey().getRetailPrice() > 0).sorted((o1, o2) -> {
+                if (o1.getKey().getId() == o2.getKey().getId()) {
+                    return 0;
+                } else {
+                    return o1.getKey().getId() > o2.getKey().getId() ? 1 : -1;
+                }
+            }).forEach(s -> {
+                sb.append(String.format("%-10d %-25s %-15d %d%n", s.getKey().getId(), s.getKey().getName(), s.getKey().getRetailPrice(), s.getValue()));
+            });
             System.out.println(sb.toString());
             sb.setLength(0);
         }

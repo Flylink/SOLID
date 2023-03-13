@@ -4,10 +4,8 @@ import org.example.customer.*;
 import org.example.products.*;
 import org.example.sales.*;
 
-
 public class Main {
     public static void main(String[] args) {
-
         Product apple = new Product("Apple");
         Product peach = new Product("Peach");
         Product pear = new Product("Pear");

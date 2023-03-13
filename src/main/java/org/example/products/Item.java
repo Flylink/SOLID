@@ -29,7 +29,6 @@ public abstract class Item {
     @Override
     public boolean equals(Object obj) {
         Item s = (Item) obj;
-        return this.getName().equals(s.getName())
-                       && this.getId() == s.getId();
+        return this.getName().equals(s.getName()) && this.getId() == s.getId();
     }
 }

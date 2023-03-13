@@ -45,10 +45,7 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public Map.Entry<Item, Integer> getItemEntryById(int id) {
         Map.Entry<Item, Integer> itemEntry = null;
-        Optional<Map.Entry<Item, Integer>> optItemEntry = storage.entrySet()
-                                                                  .stream()
-                                                                  .filter(s -> s.getKey().getId() == id)
-                                                                  .findFirst();
+        Optional<Map.Entry<Item, Integer>> optItemEntry = storage.entrySet().stream().filter(s -> s.getKey().getId() == id).findFirst();
         if (optItemEntry.isPresent()) {
             itemEntry = optItemEntry.get();
         }
